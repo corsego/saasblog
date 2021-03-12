@@ -8,4 +8,6 @@
   <%= price.unit_amount/100 %>
   <%= price.currency %>
   <%= price.recurring.interval %>
+  <%= link_to "Checkout", checkout_create_path(price: price.id), method: :post, remote: true %>
+
 <% end %>
