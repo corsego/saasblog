@@ -14,6 +14,7 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= link_to "Posts", posts_path %>
+    <%= link_to "Pricing", pricing_path %>
     <% if current_user %>
       <%= link_to current_user.email, edit_user_registration_path %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete %>
