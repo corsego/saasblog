@@ -18,6 +18,9 @@
       <%= link_to current_user.email, edit_user_registration_path %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       <br>
+      Stripe customer id:
+      <%= current_user.stripe_customer_id %>
+      <br>
       Plan:
       <%= current_user.plan %>
       <br>
