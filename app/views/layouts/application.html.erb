@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://js.stripe.com/v3/"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -16,6 +17,7 @@
     <%= link_to "Posts", posts_path %>
     <%= link_to "Pricing", pricing_path %>
     <% if current_user %>
+      <%= link_to "Checkout", checkout_create_path, method: :post, remote: true %>
       <%= link_to current_user.email, edit_user_registration_path %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       <br>

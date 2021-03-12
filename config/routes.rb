@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root "posts#index"
   get "pricing", to: "static_pages#pricing"
   resources :posts
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post "checkout/create", to: "checkout#create", as: "checkout_create"
 end
