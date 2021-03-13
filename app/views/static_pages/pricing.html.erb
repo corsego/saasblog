@@ -1,13 +1,16 @@
 <h1>Pricing</h1>
 
-<% @pricing = Stripe::Price.list(lookup_keys: ["good_year", "good_month"], expand: ["data.product"]) %>
 <% @pricing.each do |price| %>
   <br>
-  <%= price.product.name %>
-  <%= price.id %>
-  <%= price.unit_amount/100 %>
-  <%= price.currency %>
-  <%= price.recurring.interval %>
-  <%= link_to "Checkout", checkout_create_path(price: price.id), method: :post, remote: true %>
+  <b>
+    <%= price.product.name %>
+  </b>
+  <small><%= price.id %></small>
+  <b>
+    <%= price.unit_amount/100 %>
+    <%= price.currency %>
+    <%= price.recurring.interval %>
+  </b>
+  <%= link_to "Pay #{price.unit_amount/100} per #{price.recurring.interval}", checkout_create_path(price: price.id), method: :post, remote: true, data: { disable_with: "validating..."} %>
 
 <% end %>

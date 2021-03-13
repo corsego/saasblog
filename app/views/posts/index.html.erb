@@ -2,9 +2,20 @@
 
 <h1>Posts</h1>
 
+Total Posts:
+<b><%= Post.count %></b>
+<br>
+Free Posts:
+<b><%= Post.free.count %></b>
+<br>
+Premium Posts:
+<b><%= Post.premium.count %></b>
+<p>
+
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Title</th>
       <th>Content</th>
       <th>Premium</th>
@@ -13,10 +24,11 @@
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
+    <% @posts.each_with_index do |post, index| %>
       <tr>
+        <td><%= index + 1 %></td>
         <td><%= post.title %></td>
-        <td><%= post.content %></td>
+        <td><%= truncate(post.content, length: 17) %></td>
         <td><%= post.premium %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
