@@ -23,6 +23,10 @@ class WebhooksController < ApplicationController
 
     # Handle the event
     case event.type
+    when 'customer.create'
+      customer = event.data.object
+      @user = User.find_by(email: customer.email)
+      @user.update(stripe_customer_id: customer.id)
     when 'checkout.session.completed'
       session = event.data.object
       @user = User.find_by(stripe_customer_id: session.customer)
