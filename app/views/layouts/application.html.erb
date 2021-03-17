@@ -12,14 +12,22 @@
   </head>
 
   <body>
+    <center>
+      <h1>Stripe SaaS freemium blog demo</h1>
+      <%= link_to "Source code", "https://github.com/yshmarov/saasblog", target: "_blank" %>
+    </center>
+    <hr>
     <p class="notice" style="background-color: green;"><%= notice %></p>
     <p class="alert" style="background-color: red;"><%= alert %></p>
-    <%= link_to "Posts", posts_path %>
-    <%= link_to "Pricing", pricing_path %>
-    <% if current_user %>
-      <%= link_to "BillingPortal", billing_portal_create_path, method: :post, data: { disable_with: "validating..."} %>
+    <% if user_signed_in? %>
+      <br>
+      <%= link_to "Posts", posts_path %>
+      <br>
+      <%= link_to "Pricing", pricing_path %>
+      <br>
+      <%= link_to "Stripe BillingPortal", billing_portal_create_path, method: :post, data: { disable_with: "validating..."} %>
+      <br>
       <%= link_to current_user.email, edit_user_registration_path %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       <br>
       Stripe customer id:
       <%= current_user.stripe_customer_id %>
@@ -29,11 +37,10 @@
       <br>
       Subscription status:
       <%= current_user.subscription_status %>
-    <% else %>
-      <%= link_to "Log in", new_user_session_path %>
-      <%= link_to "Register", new_user_registration_path %>
+      <br>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      <hr>
     <% end %>
-    <hr>
     <%= yield %>
   </body>
 </html>

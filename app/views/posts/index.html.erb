@@ -28,7 +28,13 @@ Premium Posts:
       <tr>
         <td><%= index + 1 %></td>
         <td><%= post.title %></td>
-        <td><%= truncate(post.content, length: 17) %></td>
+        <td>
+          <% if post.premium? && current_user.subscription_status != "active" %>
+            <%= link_to "SUBSCRIBE TO VIEW", pricing_path %>
+          <% else %>
+            <%= truncate(post.content, length: 17) %>
+          <% end %>
+        </td>
         <td><%= post.premium %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
