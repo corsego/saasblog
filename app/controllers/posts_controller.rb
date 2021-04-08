@@ -2,13 +2,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    @posts = Post.all
+    #@posts = Post.all
     # only active subscribers can see premium posts
-    # if current_user.subscription_status == "active"
-    #   @posts = Post.all
-    # else
-    #   @posts = Post.free
-    # end
+    if current_user.subscription_status == "active"
+      @posts = Post.all
+    else
+      @posts = Post.free
+    end
   end
 
   def show
