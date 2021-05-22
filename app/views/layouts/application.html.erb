@@ -37,9 +37,11 @@
       <br>
       Subscription status:
       <%= current_user.subscription_status %>
-      <br>
-      Subscription ends:
-      <%= current_user.current_period_end.strftime('%d/%m/%Y') %>
+      <% if current_user.current_period_end.present? %>
+        <br>
+        Subscription ends:
+        <%= current_user.current_period_end.strftime('%d/%m/%Y') %>
+      <% end %>
       <br>
       <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       <hr>
