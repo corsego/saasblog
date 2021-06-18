@@ -33,7 +33,7 @@ class WebhooksController < ApplicationController
       @user.update(
         subscription_status: subscription.status,
         plan: subscription.items.data[0].price.lookup_key,
-        current_period_end: subscription.current_period_end,
+        current_period_end: Time.at(subscription.current_period_end).to_datetime,
       )
     end
 
